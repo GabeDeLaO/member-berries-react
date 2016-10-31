@@ -6,7 +6,10 @@
 		"directory" : "./app"
 	},
 	"components": [
-		"Nav",
+		{
+			"name" : "Nav",
+			"type" : "pure"
+		},
 		"Layout",
 		"Main",
 		"TestScreen"
