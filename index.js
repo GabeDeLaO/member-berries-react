@@ -16,6 +16,7 @@ module.exports = (function(){
 	function makeProjectFiles(){
 		let config = readFile();
 		let dir = config.settings.directory;
+		let componentsList = config.components;
 		// Create the directory if it doesn't already exist.
 		var createFile = new Promise( function(fulfill, reject){
 
@@ -26,7 +27,14 @@ module.exports = (function(){
 		});
 
 		createFile.then( function(res) {
-			console.log(res);
+			// Create the files.
+			componentsList.map( function(component){
+				fs.writeFile(dir+"/"+component+".jsx", "import React, { Component } from 'react';", function(err) {
+					console.log('error', err);
+				});	
+			});
+			
+			console.log("Member? Ohhh I member!");
 		});
 
 	}
