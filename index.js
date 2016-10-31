@@ -1,3 +1,14 @@
+/**
+ TODOS:
+ 1.) Ability to use your own templates.
+ 2.) Ability to include methods/functions, and tell which should be bound to 'this'.
+ 3.) Ability to have other component dependencies.
+ 4.) Ability to have third party dependencies.
+ 5.) Ability to pass along props to component dependencies.
+ 6.) Ability to specify layout & navigation using react router.
+ 7.) Ability to create your Routes.jsx file.
+**/
+
 'use strict';
 var fs = require('fs');
 /**
