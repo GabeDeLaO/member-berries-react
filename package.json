@@ -1,0 +1,17 @@
+{
+  "name": "react-gen",
+  "version": "0.0.1",
+  "description": "I pre-generate React Components based on a config so you don't have to.",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node index.js",
+    "test": "test",
+    "member": "node index.js"
+  },
+  "keywords": [
+    "generator"
+  ],
+  "author": "Gabriel De La O",
+  "license": "ISC",
+  "dependencies": {}
+}

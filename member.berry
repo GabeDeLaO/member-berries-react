@@ -1,0 +1,14 @@
+{
+	"settings" : {
+		"es6" : true,
+		"flux" : true,
+		"constants" : true,
+		"directory" : "./app"
+	},
+	"components": [
+		"Nav",
+		"Layout",
+		"Main",
+		"TestScreen"
+	]
+}
