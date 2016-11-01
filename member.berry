@@ -11,7 +11,7 @@
 			"type" : "pure"
 		},
 		{
-			"name" : "Bounded",
+			"name" : "StuffComponent",
 			"type" : "default",
 			"methods" : ["_onBoundedClick", "_onExit", "_onModalClick"]
 		},

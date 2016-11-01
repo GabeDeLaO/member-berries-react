@@ -114,6 +114,9 @@ const methodBuilder = (method) =>
 
 	}`+`\r\n`;
 
+const methodBinder = (method) =>
+`		`+`this.${method} = this.${method}.bind(this);`;
+
 const pure = (name) =>
 `import React, { Component } from 'react';
 
@@ -127,7 +130,8 @@ const es6 = (name, methods) =>
 export class ${name} extends React.Component {
 
 	constructor(props) {
-		super(props);
+		super(props);`+`\r\n`+
+		`${ methods.map( (method) => methodBinder(method) ).join('\r\n') }`+`
 	}
 
 	componentDidMount() {
