@@ -11,6 +11,9 @@
 
 'use strict';
 var fs = require('fs');
+var fs_extra = require('fs-extra');
+var chalk = require('chalk');
+var emoji = require('node-emoji');
 /**
  * Adds commas to a number
  * @param {number} number
@@ -24,6 +27,12 @@ module.exports = (function(){
 	}
 
 	function makeProjectFiles(){
+		var rebuild = false;
+		var argues = process.argv.slice(2);
+		argues.forEach( function( val, index, array ){
+			if( val === "rebuild" ) rebuild = true;
+		});
+
 		let config = readFile();
 		let dir = config.settings.directory;
 		let componentsList = config.components;
@@ -33,6 +42,13 @@ module.exports = (function(){
 			if ( !fs.existsSync(dir) ){
 				let d = fs.mkdirSync(dir);
 				fulfill(d);
+			} else if (rebuild) {
+				// Delete the file.
+				fs_extra.remove(dir, function(err){
+					if( err ) throw err;
+					let d = fs.mkdirSync(dir);
+					fulfill(d);
+				});
 			}
 		});
 
@@ -40,35 +56,50 @@ module.exports = (function(){
 			// Create the files.
 			componentsList.map( function(component){
 				if( typeof component === "object" ) {
-					fs.writeFile(dir+"/"+component.name+".jsx", jsxTemplate(component.name, component.type) , function(err) {
-						console.log('error', err);
+					let meths = null;
+					if( component.hasOwnProperty("methods") ){
+						meths = component.methods;
+					}
+					fs.writeFile(dir+"/"+component.name+".jsx", jsxTemplate(component.name, component.type, meths) , function(err) {
+						if( err ) throw err;
+						console.log( chalk.green('Created file: '), chalk.bgGreen(component.name+'.jsx') + ' ' + chalk.dim('pure') );
 					});
 				} else {
-					fs.writeFile(dir+"/"+component+".jsx", jsxTemplate(component, 'defualt') , function(err) {
-						console.log('error', err);
+					fs.writeFile(dir+"/"+component+".jsx", jsxTemplate(component, 'default') , function(err) {
+						if( err ) throw err;
+						console.log( chalk.green('Created file: '), chalk.bgGreen(component+'.jsx') );
 					});	
 				}	
 			});
 			
-			console.log("Member? Ohhh I member!");
+			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Ohhh I member!', chalk.green(componentsList.length + ' files. \r\n') );
+
+			if ( rebuild === true ) {
+				console.log(chalk.yellow('Directory was rebuilt ', rebuild) + '\r\n' );
+			}
+
 		});
 
 	}
 
-	function jsxTemplate(name, type) {
-		//var type = 'default';
-		console.log('what came in name', name);
-		console.log('what came in type', type);
+	function jsxTemplate(name, type, methods) {
+		
+		//console.log('what came in name ' + name , methods);
+		if( typeof methods === "undefined") {
+			console.log('No methods array');
+			methods = [];
+		}
+		//console.log('what came in type', type);
 		let contents = ``;
 
 		switch(type) {
 			case "pure":
-				contents = pure.call(contents, name);
+				contents = pure.call(contents, name, methods);
 				break;
 			case "other":
 				break;
 			default:
-				contents = es6.call(contents, name);
+				contents = es6.call(contents, name, methods);
 		} // End case.
 
 		return contents;
@@ -77,6 +108,12 @@ module.exports = (function(){
 	return makeProjectFiles();
 })();
 
+const methodBuilder = (method) => 
+`	`+`
+	${method}() {
+
+	}`+`\r\n`;
+
 const pure = (name) =>
 `import React, { Component } from 'react';
 
@@ -84,7 +121,7 @@ export const ${name} = (props) => (
 	<div></div>
 );`;
 
-const es6 = (name) =>
+const es6 = (name, methods) =>
 `import React, { Component } from 'react';
 
 export class ${name} extends React.Component {
@@ -95,8 +132,9 @@ export class ${name} extends React.Component {
 
 	componentDidMount() {
 
-	}
-
+	}`+`
+	${ methods.map( (method) => methodBuilder(method) ).join('') }
+	`+`
 	render(){
 		return(
 			<div><div>

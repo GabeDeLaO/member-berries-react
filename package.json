@@ -4,14 +4,18 @@
   "description": "I pre-generate React Components based on a config so you don't have to.",
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
+    "start": "node index.js",
     "test": "test",
-    "member": "node index.js"
+    "berries": "node index.js"
   },
   "keywords": [
     "generator"
   ],
   "author": "Gabriel De La O",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "fs-extra": "^1.0.0",
+    "node-emoji": "^1.4.1"
+  }
 }

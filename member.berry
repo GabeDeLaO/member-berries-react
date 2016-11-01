@@ -10,8 +10,14 @@
 			"name" : "Nav",
 			"type" : "pure"
 		},
+		{
+			"name" : "Bounded",
+			"type" : "default",
+			"methods" : ["_onBoundedClick", "_onExit", "_onModalClick"]
+		},
 		"Layout",
 		"Main",
-		"TestScreen"
+		"TestScreen",
+		"BuildOne"
 	]
 }
