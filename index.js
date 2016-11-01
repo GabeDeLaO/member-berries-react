@@ -62,7 +62,7 @@ module.exports = (function(){
 					}
 					fs.writeFile(dir+"/"+component.name+".jsx", jsxTemplate(component.name, component.type, meths) , function(err) {
 						if( err ) throw err;
-						console.log( chalk.green('Created file: '), chalk.bgGreen(component.name+'.jsx') + ' ' + chalk.dim('pure') );
+						console.log( chalk.green('Created file: '), chalk.bgGreen(component.name+'.jsx') + ' ' + chalk.dim(component.type) );
 					});
 				} else {
 					fs.writeFile(dir+"/"+component+".jsx", jsxTemplate(component, 'default') , function(err) {
@@ -75,7 +75,7 @@ module.exports = (function(){
 			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Ohhh I member!', chalk.green(componentsList.length + ' files. \r\n') );
 
 			if ( rebuild === true ) {
-				console.log(chalk.yellow('Directory was rebuilt ', rebuild) + '\r\n' );
+				console.log(chalk.yellow('Directory was rebuilt ') + '\r\n' );
 			}
 
 		});
@@ -86,7 +86,7 @@ module.exports = (function(){
 		
 		//console.log('what came in name ' + name , methods);
 		if( typeof methods === "undefined") {
-			console.log('No methods array');
+			//console.log('No methods array');
 			methods = [];
 		}
 		//console.log('what came in type', type);
