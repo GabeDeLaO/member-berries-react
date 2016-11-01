@@ -72,7 +72,7 @@ module.exports = (function(){
 				}	
 			});
 			
-			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Ohhh I member!', chalk.green(componentsList.length + ' files. \r\n') );
+			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Ohhh I member!', chalk.yellow(componentsList.length + ' files. \r\n') );
 
 			if ( rebuild === true ) {
 				console.log(chalk.yellow('Directory was rebuilt ') + '\r\n' );
