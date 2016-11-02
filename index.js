@@ -167,7 +167,7 @@ function storeBuilder(name,store) {
 		`\r\n\treturn {`+ 
 			`\r\n\t\t${name.charAt(0).toLowerCase()}${name.slice(1)}Store : ${ keyBuilder(store) }`+
 		`\r\n\t}`+
-		`}\r\n`;
+		`\r\n}\r\n`;
 	} else {
 		return ``;
 	}
