@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": {
     "berries": "./bin/berries.js",
-    "berries rebuild": "./bin/berries-rebuild.js"
+    "berries-rebuild": "./bin/berries-rebuild.js"
   },
   "scripts": {
     "test": "test",
