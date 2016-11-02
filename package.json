@@ -4,7 +4,7 @@
   "description": "I pre-generate React Components based on a config so you don't have to.",
   "main": "index.js",
   "bin": {
-    "berries": "bin/berries.js"
+    "berries": "./bin/berries.js"
   },
   "scripts": {
     "start": "node index.js",
