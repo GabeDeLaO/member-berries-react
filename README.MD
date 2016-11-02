@@ -67,3 +67,5 @@ This `member.berry` config file would create an **'./app'** directory with the f
 	"store" : {} // 
 }
 ```
+
+Licensed under [MIT License](LICENSE.txt).
