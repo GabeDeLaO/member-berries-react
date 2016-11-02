@@ -9,7 +9,7 @@ Using npm:
 	$ npm install react-member-berries --save
 ```
 
-Create your `member.berry` file:
+Create your `member.berry` file (a JSON file with the following keys: settings, components, stores, and constants):
 ```json
 	{
 		"settings" : {
