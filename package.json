@@ -7,7 +7,6 @@
     "berries": "./bin/berries.js"
   },
   "scripts": {
-    "start": "node index.js",
     "test": "test",
     "berries": "node index.js"
   },
