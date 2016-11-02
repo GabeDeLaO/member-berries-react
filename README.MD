@@ -10,7 +10,7 @@ Using npm:
 ```
 
 Create your `member.berry` file (a JSON file with the following keys: settings, components, stores, and constants):
-```json
+```javascript
 	{
 		"settings" : {
 			"directory" : "./[directory]"
@@ -35,7 +35,7 @@ Create your `member.berry` file (a JSON file with the following keys: settings, 
 # Sections
 
 Components:
-``` json
+``` javascript
 	...
 	{
 		"name" : "", // The Name of the Component
