@@ -1,12 +1,17 @@
 # Member Berries v0.0.1
 
-A module for scaffolding out a React App's Components.
+A module for scaffolding out your React App's Components &amp; Store files. Inspired by the :grapes: Member Berries from SouthPark.
 
 ## Installation.
 
 Using npm:
 ```shell
 	$ npm install react-member-berries --save
+```
+
+Usage in Terminal:
+```shell
+	$ npm run berries [rebuild]
 ```
 
 Create your `member.berry` config file (a JSON file with the following keys: settings, components, stores, and constants):
