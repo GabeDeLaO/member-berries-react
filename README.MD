@@ -11,7 +11,7 @@ $ npm install react-member-berries --save
 ```
 
 Usage in Terminal: 
-*make sure you've created your `member.berry` file, look below for explanation.*
+*make sure you've created your  `member.berry` file, look below for explanation.*
 ```shell
 $ member-berries 
 ```
