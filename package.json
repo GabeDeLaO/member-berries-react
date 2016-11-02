@@ -1,5 +1,5 @@
 {
-  "name": "member-berries-react",
+  "name": "react-member-berries",
   "version": "0.1.3",
   "description": "I pre-generate React Components based on a config so you don't have to.",
   "repository": "https://github.com/GabeDeLaO/member-berries-react",
