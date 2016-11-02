@@ -177,7 +177,7 @@ function keyBuilder(store){
 	if( typeof store === "object" ){
 		let keys = Object.keys(store);
 		return `{`+
-			`${ keys.map( (key) => `\r\n\t\t\t\t"${key}" : ${JSON.stringify(store[key])}` ) }`+
+			`${ keys.map( (key) => `\r\n\t\t\t"${key}" : ${JSON.stringify(store[key])}` ) }`+
 		`\r\n\t\t}`;
 	}else{
 
