@@ -1,4 +1,4 @@
-# Member Berries.
+# Member Berries v0.0.1
 
 A module for scaffolding out a React App's Components.
 
