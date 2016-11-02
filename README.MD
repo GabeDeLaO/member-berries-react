@@ -32,22 +32,19 @@ Create your `member.berry` file (a JSON file with the following keys: settings, 
 	}
 ```
 
-# Options
+# Sections
 
 Components:
 ``` json
 	...
 	{
-		"name" : "",
-		"type" : "default|pure",
+		"name" : "", // The Name of the Component
+		"type" : "", // default|pure
 		"dependencies" : [
-			{ "name" : "", "dependency" : "" },
-			"Layout"
+			{ "name" : "", "dependency" : "" }, // Dependency with alias.
+			"Layout" // Default dependency, no alias
 		],
-		"methods" : [""],
-		"store" : {
-			"param1" : ["Penguin"],
-			"param2" : {}
-		}
+		"methods" : [""], // A list of method names to include in the component.
+		"store" : {} // 
 	}
 ```
