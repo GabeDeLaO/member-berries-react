@@ -11,13 +11,31 @@
 			"type" : "pure"
 		},
 		{
-			"name" : "TheComponent",
+			"name" : "MainComponent",
 			"type" : "default",
-			"methods" : ["_onBoundedClick", "_onExit", "_onModalClick"]
+			"dependencies" : [
+				{ "name" : "_", "dependency" : "lodash" },
+				{ "name" : "Routes", "dependency" : "react-router" },
+				"Layout",
+				{ "name" : "{ Nav }", "dependency" : "./Nav", "render" : true },
+				{ "name" : "Store", "dependency" : "./stores/MainStore.js" }
+			],
+			"methods" : ["_onBoundedClick", "_onExit", "_onModalClick"],
+			"store" : {
+				"param1" : ["Penguin"],
+				"param2" : {}
+			}
 		},
 		"Layout",
 		"Main",
 		"TestScreen",
 		"BuildOne"
+	],
+	"stores": [
+		"MainStore"
+	],
+	"constants" : [
+		"App",
+		"Fixxly"
 	]
 }

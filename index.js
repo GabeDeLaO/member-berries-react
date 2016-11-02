@@ -1,9 +1,6 @@
 /**
  TODOS:
  1.) Ability to use your own templates.
- 2.) Ability to include methods/functions, and tell which should be bound to 'this'.
- 3.) Ability to have other component dependencies.
- 4.) Ability to have third party dependencies.
  5.) Ability to pass along props to component dependencies.
  6.) Ability to specify layout & navigation using react router.
  7.) Ability to create your Routes.jsx file.
@@ -36,18 +33,31 @@ module.exports = (function(){
 		let config = readFile();
 		let dir = config.settings.directory;
 		let componentsList = config.components;
+		let storesList = config.stores;
+		let constantsList = config.constants;
+		const directories = (dir) => { 
+			fs.mkdir(dir+'/components');
+			fs.mkdir(dir+'/constants');
+			fs.mkdir(dir+'/stores');
+			fs.mkdir(dir+'/utils');
+		}
+
 		// Create the directory if it doesn't already exist.
 		var createFile = new Promise( function(fulfill, reject){
 
 			if ( !fs.existsSync(dir) ){
-				let d = fs.mkdirSync(dir);
-				fulfill(d);
+				let d = fs.mkdir(dir, function(err){
+					directories(dir);
+					fulfill(d);
+				});
 			} else if (rebuild) {
 				// Delete the file.
 				fs_extra.remove(dir, function(err){
 					if( err ) throw err;
-					let d = fs.mkdirSync(dir);
-					fulfill(d);
+					let d = fs.mkdir(dir, function(err){
+						directories(dir);
+						fulfill(d);
+					});
 				});
 			}
 		});
@@ -56,23 +66,36 @@ module.exports = (function(){
 			// Create the files.
 			componentsList.map( function(component){
 				if( typeof component === "object" ) {
-					let meths = null;
-					if( component.hasOwnProperty("methods") ){
-						meths = component.methods;
-					}
-					fs.writeFile(dir+"/"+component.name+".jsx", jsxTemplate(component.name, component.type, meths) , function(err) {
+					fs.writeFile(dir+"/components/"+component.name+".jsx", jsxTemplate(component, component.type) , function(err) {
 						if( err ) throw err;
 						console.log( chalk.green('Created file: '), chalk.bgGreen(component.name+'.jsx') + ' ' + chalk.dim(component.type) );
 					});
 				} else {
-					fs.writeFile(dir+"/"+component+".jsx", jsxTemplate(component, 'default') , function(err) {
+					fs.writeFile(dir+"/components/"+component+".jsx", jsxTemplate(component, 'default') , function(err) {
 						if( err ) throw err;
 						console.log( chalk.green('Created file: '), chalk.bgGreen(component+'.jsx') );
 					});	
 				}	
 			});
 			
-			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Ohhh I member!', chalk.yellow(componentsList.length + ' files. \r\n') );
+			// Create store files.
+			storesList.map( function(store){
+				fs.writeFile(dir+'/stores/'+store+'.js', '// TODO: '+store+'.js', function(err){
+					if( err ) throw err;
+					console.log( chalk.green('Created file: '), chalk.bgCyan(store+'.js') );
+				});
+			});
+
+			// Create constants files.
+			constantsList.map( (constant) => {
+				fs.writeFile(dir+'/constants/'+constant+'Constants.js', constantTemplate(constant), function(err){
+					if( err ) throw err;
+					console.log( chalk.green('Created file: '), chalk.bgBlack(constant+'Constants.js') );
+				});
+			});
+
+			let totalFiles = componentsList.length + storesList.length;
+			console.log( ' ' + emoji.get(':grapes:') + ' ' + ' Member? Member when I created', chalk.yellow(totalFiles + ' files. Ohhh I member!\r\n') );
 
 			if ( rebuild === true ) {
 				console.log(chalk.yellow('Directory was rebuilt ') + '\r\n' );
@@ -82,13 +105,29 @@ module.exports = (function(){
 
 	}
 
-	function jsxTemplate(name, type, methods) {
-		
-		//console.log('what came in name ' + name , methods);
-		if( typeof methods === "undefined") {
-			//console.log('No methods array');
-			methods = [];
+	function constantTemplate(constant){
+		return `/**** ===== [Example] =====`+
+		`\r\nvar keyMirror = require('keymirror');\r\n`+
+		`\r\nmodule.exports = keyMirror({`+
+			`\r\n\tCONSTANT_NAME : 'CONSTANT_NAME', // Example`+
+		`\r\n});`+
+		`\r\n****/`;
+	}
+
+	function jsxTemplate(component, type) {
+		// Defaults.
+		let name = component;
+		let methods = [];
+		let dependencies = [];
+		let store = null;
+
+		if ( typeof component === "object" ) {
+			name = component.name;
+			methods = (component.hasOwnProperty('methods')) ? component.methods: [];
+			dependencies = (component.hasOwnProperty('dependencies')) ? component.dependencies: [];
+			store = (component.hasOwnProperty('store')) ? component.store: [];
 		}
+		
 		//console.log('what came in type', type);
 		let contents = ``;
 
@@ -99,7 +138,7 @@ module.exports = (function(){
 			case "other":
 				break;
 			default:
-				contents = es6.call(contents, name, methods);
+				contents = es6.call(contents, name, methods, dependencies, store);
 		} // End case.
 
 		return contents;
@@ -108,6 +147,7 @@ module.exports = (function(){
 	return makeProjectFiles();
 })();
 
+// Templates.
 const methodBuilder = (method) => 
 `	`+`
 	${method}() {
@@ -117,6 +157,48 @@ const methodBuilder = (method) =>
 const methodBinder = (method) =>
 `		`+`this.${method} = this.${method}.bind(this);`;
 
+function dependencyBuilder(dependency) {
+	if( typeof dependency === "object" ) {
+		return	`import ${dependency.name} from '${dependency.dependency}';\r\n`;
+	} else {
+		return	`import ${dependency} from '${dependency}';\r\n`;
+	}	
+}
+
+function storeBuilder(name,store) {
+	if( store !== null){
+		return `function get${name}Store(){
+		return { 
+			${name.charAt(0).toLowerCase()}${name.slice(1)}Store : ${ keyBuilder(store) }
+		}\r\n`+
+		`}\r\n`;
+	} else {
+		return ``;
+	}
+}
+
+function keyBuilder(store){
+	if( typeof store === "object" ){
+		let keys = Object.keys(store);
+		return `{`+
+			`${ keys.map( (key) => `\r\n\t\t\t"${key}" : ${JSON.stringify(store[key])}` ) }
+		}`;
+	}else{
+
+	}
+	//return `"${key}" : ${value}`;
+}
+
+function dependencyRender(dependency) {
+	if( typeof dependency === "object" && dependency.render === true ) {
+		let n = dependency.name.replace(/([\{\}'])+/g,'').replace(/(^\s+|\s+$)/g, '');
+		return	`<${n} {...this.props}/>`;
+	} else {
+		return	``;
+	}
+}
+
+
 const pure = (name) =>
 `import React, { Component } from 'react';
 
@@ -124,13 +206,16 @@ export const ${name} = (props) => (
 	<div></div>
 );`;
 
-const es6 = (name, methods) =>
-`import React, { Component } from 'react';
-
-export class ${name} extends React.Component {
+const es6 = (name, methods, dependencies, store) =>
+`import React, { Component } from 'react';`+
+`${ dependencies.map( (dependency) => dependencyBuilder(dependency) ).join('') }\r\n`+
+`${ storeBuilder(name, store) }`
++`
+export default class ${name} extends React.Component {
 
 	constructor(props) {
 		super(props);`+`\r\n`+
+		`\t\tthis.state = get${name}Store();\r\n`+
 		`${ methods.map( (method) => methodBinder(method) ).join('\r\n') }`+`
 	}
 
@@ -138,10 +223,10 @@ export class ${name} extends React.Component {
 
 	}`+`
 	${ methods.map( (method) => methodBuilder(method) ).join('') }
-	`+`
-	render(){
+	`+
+	`render(){
 		return(
-			<div><div>
+			<div>\r\n`+`\t\t\t\t${ dependencies.map( (render) => dependencyRender(render) ).join('') }`+`\r\n\t\t\t<div>
 		)
 	}
 };`;
