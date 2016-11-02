@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Member-berry-npm by GabeDeLaO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Member-berry-npm</h1>
+      <h2 class="project-tagline">I &#39;member your React App Structure so you don&#39;t have to.</h2>
+      <a href="https://github.com/GabeDeLaO/member-berry-npm" class="btn">View on GitHub</a>
+      <a href="https://github.com/GabeDeLaO/member-berry-npm/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/GabeDeLaO/member-berry-npm/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="member-berries-v001" class="anchor" href="#member-berries-v001" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Member Berries v0.0.1</h1>
+
+<p>A module for scaffolding out your React App's Components &amp; Store files. Inspired by the <g-emoji alias="grapes" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f347.png" ios-version="6.0">🍇</g-emoji> Member Berries from SouthPark.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation.</h2>
+
+<p>Using npm:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install react-member-berries --save</pre></div>
+
+<p>Usage in Terminal:
+<em>make sure you've created your member.berry file, look below for explanation.</em></p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm run berries </pre></div>
+
+<p>To force a rebuild:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm run berries rebuild</pre></div>
+
+<p>Create your <code>member.berry</code> config file (a JSON file with the following keys: settings, components, stores, and constants):</p>
+
+<div class="highlight highlight-source-js"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>settings<span class="pl-pds">"</span></span> <span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>directory<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>./app<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>components<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        {
+            <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Nav<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>pure<span class="pl-pds">"</span></span>
+        },
+        <span class="pl-s"><span class="pl-pds">"</span>Layout<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>TestScreen<span class="pl-pds">"</span></span>
+    ],
+    <span class="pl-s"><span class="pl-pds">"</span>stores<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        <span class="pl-s"><span class="pl-pds">"</span>MainStore<span class="pl-pds">"</span></span>
+    ],
+    <span class="pl-s"><span class="pl-pds">"</span>constants<span class="pl-pds">"</span></span> <span class="pl-k">:</span> [
+        <span class="pl-s"><span class="pl-pds">"</span>App<span class="pl-pds">"</span></span>
+    ]
+}</pre></div>
+
+<p>This <code>member.berry</code> config file would create an <strong>'./app'</strong> directory with the following folder structure:</p>
+
+<pre><code>/app/
+|
+|--- components/
+|--- constants/
+|--- stores/
+|--- utils/
+</code></pre>
+
+<h2>
+<a id="sections" class="anchor" href="#sections" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sections</h2>
+
+<h3>
+<a id="components" class="anchor" href="#components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components:</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">...</span>
+{
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>, <span class="pl-c">// The Name of the Component</span>
+    <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>, <span class="pl-c">// default|pure</span>
+    <span class="pl-s"><span class="pl-pds">"</span>dependencies<span class="pl-pds">"</span></span> <span class="pl-k">:</span> [
+        { <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>dependency<span class="pl-pds">"</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> }, <span class="pl-c">// Dependency with alias.</span>
+        <span class="pl-s"><span class="pl-pds">"</span>Layout<span class="pl-pds">"</span></span> <span class="pl-c">// Default dependency, no alias</span>
+    ],
+    <span class="pl-s"><span class="pl-pds">"</span>methods<span class="pl-pds">"</span></span> <span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>], <span class="pl-c">// A list of method names to include in the component.</span>
+    <span class="pl-s"><span class="pl-pds">"</span>store<span class="pl-pds">"</span></span> <span class="pl-k">:</span> {} <span class="pl-c">// </span>
+}</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/GabeDeLaO/member-berry-npm">Member-berry-npm</a> is maintained by <a href="https://github.com/GabeDeLaO">GabeDeLaO</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
