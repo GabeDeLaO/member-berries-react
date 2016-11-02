@@ -13,7 +13,7 @@ Create your `member.berry` file (a JSON file with the following keys: settings, 
 ```javascript
 	{
 		"settings" : {
-			"directory" : "./[directory]"
+			"directory" : "./app"
 		},
 		"components": [
 			{
@@ -31,10 +31,19 @@ Create your `member.berry` file (a JSON file with the following keys: settings, 
 		]
 	}
 ```
+This member.berry file would create an *'./app'* directory with the following folder structure:
+```
+	/app/
+	|
+	|--- components/
+	|--- constants/
+	|--- stores/
+	|--- utils/
+```
 
-# Sections
+## Sections
 
-Components:
+### Components:
 ``` javascript
 	...
 	{
