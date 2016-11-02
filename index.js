@@ -163,10 +163,10 @@ function dependencyBuilder(dependency) {
 
 function storeBuilder(name,store) {
 	if( store !== null){
-		return `function get${name}Store(){
-		return { 
-			${name.charAt(0).toLowerCase()}${name.slice(1)}Store : ${ keyBuilder(store) }
-		}\r\n`+
+		return `function get${name}Store(){`+
+		`\r\n\treturn {`+ 
+			`\r\n\t\t${name.charAt(0).toLowerCase()}${name.slice(1)}Store : ${ keyBuilder(store) }`+
+		`\r\n\t}`+
 		`}\r\n`;
 	} else {
 		return ``;
