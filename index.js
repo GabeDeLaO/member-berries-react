@@ -128,7 +128,6 @@ module.exports = (function(){
 			store = (component.hasOwnProperty('store')) ? component.store: [];
 		}
 		
-		//console.log('what came in type', type);
 		let contents = ``;
 
 		switch(type) {
