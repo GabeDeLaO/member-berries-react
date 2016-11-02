@@ -1,6 +1,6 @@
 {
   "name": "react-member-berries",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "I pre-generate React Components based on a config so you don't have to.",
   "main": "index.js",
   "bin": {
