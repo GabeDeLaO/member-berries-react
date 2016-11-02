@@ -10,7 +10,7 @@ Using npm:
 ```
 
 Create your `member.berry` file:
-```
+```js
 	{
 		"settings" : {
 			"directory" : "./app"
