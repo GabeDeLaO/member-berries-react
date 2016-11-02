@@ -1,7 +1,6 @@
 /**
  TODOS:
  1.) Ability to use your own templates.
- 5.) Ability to pass along props to component dependencies.
  6.) Ability to specify layout & navigation using react router.
  7.) Ability to create your Routes.jsx file.
 **/
