@@ -1,7 +1,7 @@
 # Member Berries v0.0.1
 
 A module for scaffolding out your React App's Components &amp; Store files. 
-<br>**Inspired by the :grapes: Member Berries from SouthPark.**
+<br>*Inspired by the :grapes: Member Berries from SouthPark.*
 
 ## Installation.
 
