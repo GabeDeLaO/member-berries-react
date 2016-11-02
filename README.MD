@@ -9,7 +9,7 @@ Using npm:
 	$ npm install react-member-berries --save
 ```
 
-Create your `member.berry` file (a JSON file with the following keys: settings, components, stores, and constants):
+Create your `member.berry` config file (a JSON file with the following keys: settings, components, stores, and constants):
 ```javascript
 	{
 		"settings" : {
@@ -31,7 +31,7 @@ Create your `member.berry` file (a JSON file with the following keys: settings, 
 		]
 	}
 ```
-This member.berry file would create an *'./app'* directory with the following folder structure:
+This `member.berry` config file would create an **'./app'** directory with the following folder structure:
 ```
 	/app/
 	|
