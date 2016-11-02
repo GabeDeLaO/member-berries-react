@@ -27,6 +27,7 @@ module.exports = (function(){
 		var rebuild = false;
 		var argues = process.argv.slice(2);
 		argues.forEach( function( val, index, array ){
+			console.log('arguments', val);
 			if( val === "rebuild" ) rebuild = true;
 		});
 
