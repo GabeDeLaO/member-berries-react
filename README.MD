@@ -11,7 +11,11 @@ Using npm:
 
 Usage in Terminal:
 ```shell
-	$ npm run berries [rebuild]
+	$ npm run berries 
+```
+To force a rebuild:
+```shell
+	$ npm run berries rebuild
 ```
 
 Create your `member.berry` config file (a JSON file with the following keys: settings, components, stores, and constants):
