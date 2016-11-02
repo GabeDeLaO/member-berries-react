@@ -13,11 +13,11 @@ $ npm install react-member-berries --save
 Usage in Terminal: 
 *make sure you've created your `member.berry` file, look below for explanation.*
 ```shell
-$ npm run berries 
+$ member-berries 
 ```
 To force a rebuild:
 ```shell
-$ npm run berries rebuild
+$ member-berries-rebuild
 ```
 
 Create your `member.berry` config file (a JSON file with the following keys: settings, components, stores, and constants):

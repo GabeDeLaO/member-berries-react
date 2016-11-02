@@ -12,10 +12,7 @@ var fs_extra = require('fs-extra');
 var chalk = require('chalk');
 var emoji = require('node-emoji');
 /**
- * Adds commas to a number
- * @param {number} number
- * @param {string} locale
- * @return {string}
+ * Creates a scaffold of your react components.
  */
 module.exports = (function(){
 	function readFile(){
