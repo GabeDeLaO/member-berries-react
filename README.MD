@@ -1,4 +1,4 @@
-# Member Berries v0.0.1 :grapes:
+# :grapes: Member Berries v0.0.1 :grapes:
 
 A module for scaffolding out your React App's Components &amp; Store files. 
 <br>*Inspired by the "Member Berries" of SouthPark.*
