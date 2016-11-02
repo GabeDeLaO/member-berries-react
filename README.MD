@@ -55,7 +55,7 @@ This `member.berry` config file would create an **'./app'** directory with the f
 ## Sections
 
 ### Components:
-<br>Each component you list can have the following options:
+Each component you list can have the following options:
 ``` javascript
 {
 	"name" : "", // The Name of the Component
