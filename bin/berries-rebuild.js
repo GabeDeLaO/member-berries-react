@@ -1,4 +1,5 @@
 #! /usr/bin/env node
 var shell = require("shelljs");
-
-shell.exec("node ./node_modules/member-berries-react/index.js -- rebuild");
+var path = require('path');
+var memberBerryIndexFile = path.join(path.dirname(__filename),'/../index.js');
+shell.exec("node " + memberBerryIndexFile  + " -- rebuild");
