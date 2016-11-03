@@ -1,6 +1,6 @@
 {
   "name": "member-berries-react",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "description": "I generate ES6 React Components based on a config so you don't have to.",
   "repository": {
     "type": "git",
