@@ -28,7 +28,7 @@ module.exports = (function(){
 		});
 
 		let config = readFile();
-		let dir = path.join(__dirname,config.settings.directory);
+		let dir = config.settings.directory;
 		let componentsList = config.components;
 		let storesList = config.stores;
 		let constantsList = config.constants;
