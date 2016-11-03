@@ -9,8 +9,8 @@
   "preferGlobal": "true",
   "main": "index.js",
   "bin": {
-    "member-berries": ".index.js",
-    "member-berries-index": ".index.js",
+    "member-berries": "index.js",
+    "member-berries-index": "index.js",
     "member-berries-rebuild": "./bin/berries-rebuild.js"
   },
   "scripts": {
