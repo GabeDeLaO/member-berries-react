@@ -1,8 +1,11 @@
 {
   "name": "member-berries-react",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "description": "I generate ES6 React Components based on a config so you don't have to.",
-  "repository": { "type": "git", "url": "https://github.com/GabeDeLaO/member-berries-react" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GabeDeLaO/member-berries-react"
+  },
   "preferGlobal": "true",
   "main": "index.js",
   "bin": {
@@ -25,7 +28,7 @@
     "node-emoji": "^1.4.1",
     "shelljs": "^0.7.5"
   },
-  "engine" : {
+  "engine": {
     "node": "*"
   }
 }
