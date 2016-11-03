@@ -10,6 +10,7 @@ var fs = require('fs');
 var fs_extra = require('fs-extra');
 var chalk = require('chalk');
 var emoji = require('node-emoji');
+var path = require('path');
 /**
  * Creates a scaffold of your react components.
  */
@@ -27,7 +28,7 @@ module.exports = (function(){
 		});
 
 		let config = readFile();
-		let dir = config.settings.directory;
+		let dir = path.join(__dirname,config.settings.directory);
 		let componentsList = config.components;
 		let storesList = config.stores;
 		let constantsList = config.constants;

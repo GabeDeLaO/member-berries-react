@@ -10,7 +10,6 @@
   "main": "index.js",
   "bin": {
     "member-berries": "./bin/berries.js",
-    "member-berries-index": "index.js",
     "member-berries-rebuild": "./bin/berries-rebuild.js"
   },
   "scripts": {
