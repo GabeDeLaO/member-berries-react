@@ -65,12 +65,12 @@ module.exports = (function(){
 				if( typeof component === "object" ) {
 					fs.writeFile(dir+"/components/"+component.name+".jsx", jsxTemplate(component, component.type) , function(err) {
 						if( err ) throw err;
-						console.log( chalk.green('Created file: '), chalk.bgGreen(component.name+'.jsx') + ' ' + chalk.dim(component.type) );
+						console.log( chalk.green('Created file: '), chalk.bgGreen(dir+"/components/"+component.name+'.jsx') + ' ' + chalk.dim(component.type) );
 					});
 				} else {
 					fs.writeFile(dir+"/components/"+component+".jsx", jsxTemplate(component, 'default') , function(err) {
 						if( err ) throw err;
-						console.log( chalk.green('Created file: '), chalk.bgGreen(component+'.jsx') );
+						console.log( chalk.green('Created file: '), chalk.bgGreen(dir+"/components/"+component+'.jsx') );
 					});	
 				}	
 			});
